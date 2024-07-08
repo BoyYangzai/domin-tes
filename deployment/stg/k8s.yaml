@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+spec:
+  ports:
+    - port: 8886
+  selector:
+    app: website
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: website-np
+spec:
+  podSelector:
+    matchLabels:
+      app: website
+  policyTypes:
+    - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        # Ingress reverse proxy
+        cidr: '0.0.0.0/0'
+        except: ['10.0.0.0/8']
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: website-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: website
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  selector:
+    matchLabels:
+      app: website
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+          - image: us-west1-docker.pkg.dev/hydrox-ai/hydro-social/website@sha256:4a669b1c6184cfe280772634e942da260f153e040b88ea2afe05571231cb2bd4
+          imagePullPolicy: "Always"
+          name: website
+          ports:
+            - containerPort: 8886
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8886
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8886
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          resources:
+            requests:
+              cpu: 2.5m
+              memory: 8Mi
+      restartPolicy: Always

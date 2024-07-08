@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    secretEnv: ['GITHUB_PERSONAL_ACCESS_TOKEN']
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        docker build -t us-west1-docker.pkg.dev/$PROJECT_ID/hydro-social/website -f deployment/stg/Dockerfile Website --build-arg GITHUB_PERSONAL_ACCESS_TOKEN=$$GITHUB_PERSONAL_ACCESS_TOKEN --build-arg ENVIRONMENT=STG --build-arg GOOGLE_ANALYTICS_MEASUREMENT_ID=G-E3QQGXBN7S
+
+images:
+  - 'us-west1-docker.pkg.dev/$PROJECT_ID/hydro-social/website'
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/github-personal-access-token/versions/latest
+      env: 'GITHUB_PERSONAL_ACCESS_TOKEN'
