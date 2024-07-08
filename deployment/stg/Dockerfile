@@ -17,10 +17,17 @@ ENV GOOGLE_ANALYTICS_MEASUREMENT_ID=$GOOGLE_ANALYTICS_MEASUREMENT_ID
 
 RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_PERSONAL_ACCESS_TOKEN}" > ~/.npmrc
 
-WORKDIR /app/Website
+WORKDIR /app/hydro-social/website
 COPY pnpm-lock.yaml pnpm-lock.yaml
 COPY package.json .
 COPY tsconfig.json .
+COPY app app
+COPY components components
+COPY hooks hooks
+COPY public public
+COPY request request
+COPY theme theme
+
 RUN pnpm install
 RUN pnpm run build
 RUN pnpm run start
