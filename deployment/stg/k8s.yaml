@@ -63,7 +63,7 @@ spec:
         app: website
     spec:
       containers:
-          - image: us-west1-docker.pkg.dev/hydrox-ai/hydro-social/website@sha256:4a669b1c6184cfe280772634e942da260f153e040b88ea2afe05571231cb2bd4
+          - image: us-west1-docker.pkg.dev/hydrox-ai/hydro-social/website@sha256:ae08cff9bc7d2ae8aa03dd2105bf629a91a3d33d534fe85b5980c0f7e0341b3b
           imagePullPolicy: "Always"
           name: website
           ports:
