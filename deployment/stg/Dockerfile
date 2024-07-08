@@ -22,6 +22,8 @@ WORKDIR /app/Website
 COPY . /app/Website
 RUN pnpm install
 RUN pnpm build
+
+EXPOSE 3000
 CMD pnpm start
 # FROM nginx:alpine
 # COPY --from=build /app/Website/packages/website/build/ /usr/share/nginx/html
