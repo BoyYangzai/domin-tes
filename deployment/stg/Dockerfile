@@ -2,6 +2,9 @@
 # docker build -t website -f ./Website/packages/website/Dockerfile ./Website
 #
 FROM node:20-alpine AS build
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
 ARG ENVIRONMENT
 ENV ENVIRONMENT=$ENVIRONMENT
