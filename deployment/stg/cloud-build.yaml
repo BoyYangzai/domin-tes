@@ -5,7 +5,7 @@ steps:
     args:
       - -c
       - |
-        docker build -t us-west1-docker.pkg.dev/$PROJECT_ID/hydro-social/website -f deployment/stg/Dockerfile Website --build-arg GITHUB_PERSONAL_ACCESS_TOKEN=$$GITHUB_PERSONAL_ACCESS_TOKEN --build-arg ENVIRONMENT=STG --build-arg GOOGLE_ANALYTICS_MEASUREMENT_ID=G-E3QQGXBN7S
+        docker build -t us-west1-docker.pkg.dev/$PROJECT_ID/hydro-social/website -f deployment/stg/Dockerfile . --build-arg GITHUB_PERSONAL_ACCESS_TOKEN=$$GITHUB_PERSONAL_ACCESS_TOKEN --build-arg ENVIRONMENT=STG --build-arg GOOGLE_ANALYTICS_MEASUREMENT_ID=G-E3QQGXBN7S
 
 images:
   - 'us-west1-docker.pkg.dev/$PROJECT_ID/hydro-social/website'
