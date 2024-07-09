@@ -1,7 +1,5 @@
-#
-# docker build -t website -f ./Website/packages/website/Dockerfile ./Website
-#
 FROM node:20-alpine AS build
+
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -23,8 +21,9 @@ COPY . /app/Website
 RUN pnpm install
 RUN pnpm build
 
-EXPOSE 3000
-CMD pnpm start
+EXPOSE 8886
+ENV PORT=8886
+CMD ["sh", "-c", "PORT=$PORT pnpm start"]
 # FROM nginx:alpine
 # COPY --from=build /app/Website/packages/website/build/ /usr/share/nginx/html
 # COPY --from=build /app/Website/packages/website/nginx.conf /etc/nginx/nginx.conf

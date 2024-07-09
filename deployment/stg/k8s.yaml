@@ -5,6 +5,7 @@ metadata:
 spec:
   ports:
     - port: 8886
+      targetPort: 8886
   selector:
     app: website
 ---
@@ -63,25 +64,25 @@ spec:
         app: website
     spec:
       containers:
-        - image: us-west1-docker.pkg.dev/hydrox-ai/hydro-social/website@sha256:fc7dcc014be6b7238a31d0106b2046b188a3c74d1fec065f7461aea46dcc0964
+        - image: us-west1-docker.pkg.dev/hydrox-ai/hydro-social/website@sha256:37f80f0d83103a4d069df353daf32af004a27d2f3ca52d1cf59321dae54b5859
           imagePullPolicy: "Always"
           name: website
           ports:
             - containerPort: 8886
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: 8886
-#            initialDelaySeconds: 10
-#            periodSeconds: 60
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: 8886
-#            initialDelaySeconds: 10
-#            periodSeconds: 60
-          resources:
-            requests:
-              cpu: 2.5m
-              memory: 8Mi
+          readinessProbe:
+            httpGet:
+              path: /health?readiness
+              port: 8886
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /health?liveness
+              port: 8886
+            initialDelaySeconds: 10
+            periodSeconds: 60
+#          resources:
+#            requests:
+#              cpu: 2.5m
+#              memory: 8Mi
       restartPolicy: Always
