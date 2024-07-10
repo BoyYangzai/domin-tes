@@ -53,7 +53,6 @@ const useChat = ({
     mutate({
       message: text,
       dialogue_id,
-      classId,
     });
   };
 
