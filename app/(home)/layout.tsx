@@ -16,9 +16,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { user,isLoading } = useUser()
-  console.log(user)
-  
+  const { user, isLoading } = useUser();
+  console.log(user);
+
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [userBarVisible, setUserBarVisible] = useState(false);
   const router = useRouter();
@@ -49,39 +49,34 @@ export default function RootLayout({
     <main className="w-full h-screen overflow-hidden">
       <nav className="h-20 flex justify-center items-center  bg-bg shadow-sm dark:bg-gray-900 fixed w-full">
         <div className="w-full flex justify-between items-center">
-          <div className="flex h-full justify-center items-center">       
+          <div className="flex h-full justify-center items-center">
             <Image
-            src={"/img/logo.png"}
-            alt=""
-            width={50}
-            height={50}
-            className="ml-8"
+              src={"/img/logo.png"}
+              alt=""
+              width={50}
+              height={50}
+              className="ml-8"
             ></Image>
-            <div className="text-white text-xl font-bold ml-2">
-            Sparkhere
+            <div className="text-white text-xl font-bold ml-2">Sparkhere</div>
           </div>
-       </div>
           <div className="mr-8">
             <MainButton
               loading={isLoading}
               onClick={() => {
                 //open login page /api/auth/login
-                if(user){
+                if (user) {
                   router.push("/api/auth/logout");
                 } else {
-                  router.push("/api/auth/login")
+                  router.push("/api/auth/login");
                 }
               }}
             >
-          {user ? "退出" : "登录"}
+              {user ? "退出" : "登录"}
             </MainButton>
-       </div>
-         
+          </div>
         </div>
       </nav>
-      <div className="mt-20 h-full overflow-y-scroll">
-      {children}
-      </div>
+      <div className="mt-20 h-full overflow-y-scroll">{children}</div>
     </main>
   );
 }

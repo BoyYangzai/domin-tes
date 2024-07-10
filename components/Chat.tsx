@@ -137,7 +137,6 @@ const AiItem = ({
           <span className="text-lg font-bold flex justify-center items-center">
             Olivia
           </span>
-       
         </div>
         <div className="text-[#9da1b7]">
           17:18

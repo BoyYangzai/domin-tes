@@ -4,7 +4,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider as AntdConfigProvider } from "antd";
 import antdTheme from "../theme/themeConfig";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const queryClient = new QueryClient();
 
@@ -19,9 +19,7 @@ export default function RootLayout({
         <AntdRegistry>
           <AntdConfigProvider theme={antdTheme}>
             <QueryClientProvider client={queryClient}>
-              <UserProvider>
-                {children}
-                </UserProvider>
+              <UserProvider>{children}</UserProvider>
             </QueryClientProvider>
           </AntdConfigProvider>
         </AntdRegistry>
