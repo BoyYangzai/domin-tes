@@ -10,12 +10,10 @@ export default function MainButton({
 } & ButtonProps) {
   return (
     <Button
-      style={
-        {
-            background: "linear-gradient(to right, #A5FF6D, #32F799)",
-          ...style,
-        }
-      }
+      style={{
+        background: "linear-gradient(to right, #A5FF6D, #32F799)",
+        ...style,
+      }}
       {...props}
     >
       {children}

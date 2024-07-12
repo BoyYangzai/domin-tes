@@ -13,18 +13,18 @@ export default function Home() {
       ></Image>
       <div className="w-full flex justify-center items-center">
         <div className="w-[92%] flex flex-wrap justify-between gap-x-2 gap-y-5">
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-        <HomeItemCard></HomeItemCard>
-      </div>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+          <HomeItemCard></HomeItemCard>
+        </div>
       </div>
     </div>
   );

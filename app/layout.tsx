@@ -21,9 +21,7 @@ export default function RootLayout({
           <AntdConfigProvider theme={antdTheme}>
             <QueryClientProvider client={queryClient}>
               <UserProvider>
-                <Init>
-                  {children}
-                </Init>
+                <Init>{children}</Init>
               </UserProvider>
             </QueryClientProvider>
           </AntdConfigProvider>

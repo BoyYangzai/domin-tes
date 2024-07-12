@@ -78,9 +78,11 @@ export default function RootLayout({
         </div>
       </nav>
       <div className="mt-20 h-[calc(100%-5rem)] flex flex-col">
-        <div className="flex-1 overflow-y-scroll flex justify-center items-center">{children}</div>
-      <TabBar></TabBar>
-     </div>
+        <div className="flex-1 overflow-y-scroll flex justify-center items-center">
+          {children}
+        </div>
+        <TabBar></TabBar>
+      </div>
     </main>
   );
 }
