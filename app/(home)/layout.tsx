@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Button } from "antd";
 import MainButton from "../../components/MainButton";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import TabBar from "../../components/home/TabBar";
 
 const NAV_LIST = ["Chat", "Programs", "Tools", "Memory"];
 
@@ -76,7 +77,10 @@ export default function RootLayout({
           </div>
         </div>
       </nav>
-      <div className="mt-20 h-full overflow-y-scroll">{children}</div>
+      <div className="mt-20 h-[calc(100%-5rem)] flex flex-col">
+        <div className="flex-1 overflow-y-scroll flex justify-center items-center">{children}</div>
+      <TabBar></TabBar>
+     </div>
     </main>
   );
 }

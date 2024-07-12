@@ -1,14 +1,13 @@
 import { request } from "./request";
 
-export interface LoginParams {
-  name: string;
-  password: string;
-}
-export const userLogin = async (data: LoginParams) => {
-  console.log(data, 111);
+
+export const userLogin = async (data: {
+  [key: string]: any;
+}) => {
   return request({
-    url: "/login",
+    url: "/auth/oauth_login",
     method: "POST",
     data,
   });
 };
+
